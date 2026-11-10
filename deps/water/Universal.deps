@@ -1,0 +1,220 @@
+Package Universal ;
+
+Uses ;
+
+(* Mathematical quantities *)
+
+QuantityKind Real
+ Type : real ;
+ Min  : -maxreal ;
+ Max  : +maxreal ;
+ Dim : U ;
+End
+
+Quantity Real
+ Kind : Real ;
+ Min  : -maxreal ;
+ Max  : +maxreal ;
+ Unit : u ;
+End
+
+QuantityKind Integer
+ Type : integer ;
+ Min  : -maxint ;
+ Max  : +maxint ;
+ Dim : U ;
+End
+
+Quantity Integer
+ Kind : Integer ;
+ Min  : -maxint ;
+ Max  : +maxint ;
+ Unit : u ;
+End
+
+(* Base Physical quantities *)
+
+QuantityKind Length
+ Type : real ;
+ Min  : 0 ;
+ Max  : +maxreal;
+ Dim : L ;
+End
+
+Quantity Length
+ Kind : Length ;
+ Min  : 0 ;
+ Max  : +maxreal ;
+ Unit : m ;
+End
+
+QuantityKind Mass
+ Type : real ;
+ Min  : 0 ;
+ Max  : +maxreal;
+ Dim  : M;
+End
+
+Quantity Mass
+ Kind : Mass ;
+ Min  : 0 ;
+ Max  : +maxreal ;
+ Unit : kg ;
+End
+
+QuantityKind Time
+ Type : real ;
+ Min  : 0 ;
+ Max  : +maxreal;
+ Dim : T ;
+End
+
+Quantity Time
+ Kind : Time ;
+ Min  : 0 ;
+ Max  : +maxreal ;
+ Unit : s ;
+End
+
+QuantityKind Current
+ Type : real ;
+ Min  : -maxreal ;
+ Max  : +maxreal ;
+ Dim  : I ;
+End
+
+Quantity Current
+ Kind : Current ;
+ Min  :  -maxreal  ;
+ Max  : +maxreal ;
+ Unit : A ;
+End
+
+QuantityKind Temperature
+ Type : real ;
+ Min  : -maxreal;
+ Max  : +maxreal ;
+ Dim : T ;
+End
+
+Quantity Temperature
+ Kind : Temperature ;
+ Min  : -maxreal ;
+ Max  : +maxreal ;
+ Unit : K ;
+End
+
+(* Derived Physical quantities *)
+
+QuantityKind Pressure
+ Type : real ;
+ Min  : 0 ;
+ Max  : +maxreal ;
+ Dim  :  Lminus1MTminus2; (* L^-1.M.T^-2 *)
+End
+
+Quantity Pressure
+ Kind : Pressure ;
+ Min  : 0 ;
+ Max  : +maxreal ;
+ Unit : Pa ;
+End
+
+QuantityKind Volume
+ Type : real ;
+ Min  : 0 ;
+ Max  : +maxreal ;
+ Dim  : L3; (* L^3 *)
+End
+
+Quantity Volume
+ Kind : Volume ;
+ Min  : 0 ;
+ Max  : +maxreal ;
+ Unit : m3 ;
+End
+
+QuantityKind Voltage
+ Type : real ;
+ Min  : -maxreal ;
+ Max  : +maxreal ;
+ Dim  : ML2Tminus3Iminus1 ; (* M.L^2.T^-3.I^-1 *)
+End
+
+Quantity Voltage
+ Kind : Voltage ;
+ Min  : -maxreal ;
+ Max  : +maxreal ;
+ Unit : V ;
+End
+
+QuantityKind Power
+ Type : real ;
+ Min  : -maxreal ;
+ Max  : +maxreal ;
+ Dim  : ML2Tminus3 ; (* M.L^2.T^-3 *)
+End
+
+Quantity Power
+ Kind : Power ;
+ Min  : -maxreal ;
+ Max  : +maxreal ;
+ Unit : W ;
+End
+
+QuantityKind Energy
+ Type : real ;
+ Min  : -maxreal ;
+ Max  : +maxreal ;
+ Dim  : ML2Tminus2 ; (* M.L^2.T^-2 *)
+End
+
+Quantity Energy
+ Kind : Energy ;
+ Min  : -maxreal ;
+ Max  : +maxreal ;
+ Unit : J ;
+End
+
+QuantityKind VolumetricMassDensity
+ Type : real ;
+ Min  : -maxreal ;
+ Max  : +maxreal ;
+ Dim  : MLmoins3 ; (* M.L^3 *)
+End
+
+Quantity VolumetricMassDensity
+ Kind : VolumetricMassDensity ;
+ Min  : -maxreal ;
+ Max  : +maxreal ;
+ Unit : kgperM3 ;
+End
+
+QuantityKind SpecificVolume
+ Type : real ;
+ Min  : -maxreal ;
+ Max  : +maxreal ;
+ Dim  : L3Mminus1 ; (* M.L^-3 *)
+End
+
+Quantity SpecificVolume
+ Kind : SpecificVolume ;
+ Min  : -maxreal ;
+ Max  : +maxreal ;
+ Unit : M3perkg ;
+End
+
+QuantityKind SpecificPower  (* Power-to-weigh ratio *)
+ Type : real ;
+ Min  : -maxreal ;
+ Max  : +maxreal ;
+ Dim  : L2Tminus3 ; (* L^2.T^-3 *)
+ End
+
+Quantity SpecificPower  (* Power-to-weigh ratio *)
+ Kind : SpecificPower ;
+ Min  : -maxreal ;
+ Max  : +maxreal ;
+ Unit : Wperkg ;
+End
+

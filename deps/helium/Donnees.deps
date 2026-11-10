@@ -1,0 +1,95 @@
+Package Donnees ;
+
+Uses Universal, Grandeurs ;
+
+(* Joints HELICOFLEX HN200 - catalogue Technetics p.9 et p.12, converti en SI.          *)
+(* niv : 1 = bulle, 2 = helium ; jaq : 1 Al, 2 Ag, 3 Cu/fer doux, 4 Ni/Monel, 5 Inox    *)
+(* PuT : pression intrinseque a T = 525 C, interpolee (eq. 5.5 du rapport)            *)
+(* Catalogue pre-filtre pour la ligne : seuls les joints compatibles (niveau, PuT >= P, plage de diametre) sont gardes. *)
+(* Les references avec PuT = 0 a cette temperature (T >= Tmax) sont retirees du catalogue. *)
+Table CatJoints
+Attributes
+ref : Indice;
+niv : Indice;
+jaq : Indice;
+CS : Longueur;
+e2 : Longueur;
+ec : Longueur;
+Y2 : ChargeLin;
+Y1 : ChargeLin;
+PuAmb : Pression;
+PuT : Pression;
+Tmax : TempC;
+Dmin : Longueur;
+Dmax : Longueur;
+XlowP : Longueur;
+XhighP : Longueur;
+F : Longueur;
+G : Longueur;
+Tuples
+[82, 2, 4, 4.4958, 0.7112, 0.9906, 719.946, 150.084, 104.973, 15.596, 600, 50.8, 1016, 0.7112, 0.508, 3.7846, 5.9182], (* HN200 Nickel CS=0.177 in helium *)
+[84, 2, 4, 5.0038, 0.7112, 1.0922, 780.015, 180.03, 109.971, 23.744, 650, 76.2, 1270, 0.7112, 0.508, 4.2926, 6.4262], (* HN200 Nickel CS=0.197 in helium *)
+[103, 2, 5, 3.9878, 0.7112, 0.9906, 750.068, 170.048, 106.972, 15.746, 600, 44.45, 762, 0.7112, 0.508, 3.2766, 5.4102], (* HN200 Inox CS=0.157 in helium *)
+[105, 2, 5, 4.4958, 0.7112, 0.9906, 825.023, 219.959, 109.971, 22.494, 650, 50.8, 1016, 0.7112, 0.508, 3.7846, 5.9182] (* HN200 Inox CS=0.177 in helium *)
+End
+
+(* Vis ISO metriques a pas gros : d2, d3, As, ds (ISO 724/898-1), dt (ISO 273 moyen), s (ISO 4014) *)
+Table CatVis
+Attributes
+ref : Indice;
+d : Longueur;
+p : Longueur;
+d2 : Longueur;
+d3 : Longueur;
+As : Aire;
+ds : Longueur;
+dt : Longueur;
+s : Longueur;
+Tuples
+[1, 10, 1.5, 9.0257, 8.1597, 57.9896, 8.5927, 11, 16], (* M10 x 1.5 *)
+[2, 12, 1.75, 10.8633, 9.853, 84.2665, 10.3582, 13.5, 18], (* M12 x 1.75 *)
+[3, 14, 2, 12.701, 11.5463, 115.4394, 12.1236, 15.5, 21], (* M14 x 2 *)
+[4, 16, 2, 14.701, 13.5463, 156.6684, 14.1236, 17.5, 24], (* M16 x 2 *)
+[5, 18, 2.5, 16.3762, 14.9328, 192.4727, 15.6545, 20, 27], (* M18 x 2.5 *)
+[6, 20, 2.5, 18.3762, 16.9328, 244.7944, 17.6545, 22, 30], (* M20 x 2.5 *)
+[7, 22, 2.5, 20.3762, 18.9328, 303.3993, 19.6545, 24, 34], (* M22 x 2.5 *)
+[8, 24, 3, 22.0514, 20.3194, 352.5039, 21.1854, 26, 36], (* M24 x 3 *)
+[9, 27, 3, 25.0514, 23.3194, 459.4064, 24.1854, 30, 41], (* M27 x 3 *)
+[10, 30, 3.5, 27.7267, 25.706, 560.5872, 26.7163, 33, 46], (* M30 x 3.5 *)
+[11, 33, 3.5, 30.7267, 28.706, 693.5535, 29.7163, 36, 50], (* M33 x 3.5 *)
+[12, 36, 4, 33.4019, 31.0925, 816.7226, 32.2472, 39, 55] (* M36 x 4 *)
+End
+
+(* Seuls les materiaux valides a cette temperature (et compatibles avec le tube pour la bride) sont gardes. *)
+(* Materiaux de vis a T = 525 C : E(T) EN 13480-3 annexe G ; SadmT = 2/3 Rp02T *)
+Table CatMatVis
+Attributes
+ref : Indice;
+rho : MasseVol;
+E20 : Pression;
+ET : Pression;
+Rp02T : Pression;
+SadmT : Pression;
+Tmin : TempC;
+Tmax : TempC;
+Tuples
+[5, 7940, 201000, 172215, 535, 356.7, -196, 650] (* A286 (1.4980) - EN 10269 / donnees fournisseur *)
+End
+
+(* Materiaux de bride a T = 525 C : SadmT = 1.5 f = Rp02T (membrane + flexion) ; admTube : 1 = compatible tube 316L *)
+Table CatMatBride
+Attributes
+ref : Indice;
+rho : MasseVol;
+E20 : Pression;
+ET : Pression;
+Rp02T : Pression;
+SadmT : Pression;
+Tmin : TempC;
+Tmax : TempC;
+admTube : Indice;
+Tuples
+[1, 8000, 199964, 157140, 91, 91, -196, 550, 1], (* 316L (1.4404) - RCC-MRx (Rp0.2=101 MPa a 340 C, Zaouter 2020) *)
+[2, 8000, 199964, 157140, 133.5, 133.5, -196, 550, 1], (* 316LN (1.4406) - EN 10028-7 / EN 10222-5 *)
+[3, 7900, 199964, 157140, 80.5, 80.5, -196, 550, 1] (* 304L (1.4307) - EN 10028-7 *)
+End

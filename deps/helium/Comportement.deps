@@ -1,0 +1,71 @@
+Package Comportement ;
+Uses Universal, Grandeurs, Composants, Structure ;
+
+(* COMPORTEMENT : les arguments J et S sont des references declarees avec [].
+   Ils designent les objets deja instancies dans la structure.
+   Les equations mecaniques, thermiques et de serrage d'origine sont conservees. *)
+
+Model ComportementJoint(J, Pser)
+Constants
+Pser : Pression ;
+Pseuil : Pression = 2.0 ;
+Variables
+Fmp : Effort in [0, 100000000] ;
+expr Fj : Effort ;
+expr Fp : Effort ;
+expr Ym : ChargeLin ;
+expr Fm : Effort ;
+Elements
+J : JointHelicoflex[Longueur, Longueur] ;
+Properties
+IfThenElse(Pser >= Pseuil, [J.X = J.XhighP], [J.X = J.XlowP]) ;
+Fj := Pi*J.DG*J.Y2 ;
+Fp := Pi/4*(J.DG^2)*Pser ;
+Ym := max(J.Y1, J.Y2*Pser/J.PuT) ;
+Fm := Pi*J.DG*Ym ;
+IfThenElse(Pser*J.DG >= 32*Ym, [Fmp = Fj], [Fmp = Fm]) ;
+End
+
+Model ComportementBride(S, Pser, Tser, Ft, Mf, Mt)
+Constants
+Pser : Pression ;
+Tser : TempC ;
+Ft : Effort ;
+Mf : Moment ;
+Mt : Moment ;
+mu : Coef = 0.15 ;
+Kc : Coef = 0.15 ;
+f1 : Coef = 0.15 ;
+Variables
+expr Fext : Effort ;
+expr Ftor : Effort ;
+expr Fs : Effort ;
+expr Fss : Effort ;
+expr FB : Effort ;
+expr F0 : Effort ;
+expr Cs : Moment ;
+expr C1 : Moment ;
+expr sigv : Pression ;
+expr tauv : Pression ;
+expr sigeqv : Pression ;
+expr Mbr : Moment ;
+expr sigbr : Pression ;
+Elements
+S : StructureBride[Longueur, Longueur] ;
+J : ComportementJoint(S.J, Pser) ;
+Properties
+Fext := Ft + 4*Mf/S.J.DG ;
+Ftor := Mt/(mu*S.Rc) ;
+Fs := J.Fp + J.Fmp + Fext + Ftor ;
+Fss := Fs*S.MV.E20/S.MV.ET ;
+FB := max(J.Fj, Fss) ;
+F0 := FB/S.n ;
+Cs := Kc*F0*S.V.d ;
+sigv := F0/S.V.As ;
+C1 := F0*(0.16*S.V.p + 0.583*S.V.d2*f1) ;
+tauv := 16*C1/(Pi*(S.V.ds^3)) ;
+sigeqv := sqrt((sigv^2) + 3*(tauv^2)) ;
+Mbr := FB*(S.C - S.J.DG)/2 ;
+sigbr := 6*Mbr/(Pi*S.C*(S.h^2)) ;
+End
+

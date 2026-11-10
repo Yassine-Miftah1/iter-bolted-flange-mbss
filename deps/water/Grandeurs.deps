@@ -1,0 +1,94 @@
+Package Grandeurs ;
+
+Uses Universal ;
+
+(* ---------------------------------------------------- indices et entiers *)
+Quantity Indice
+Kind : Integer ;
+Min  : 0 ;
+Max  : 10000 ;
+Unit : u ;
+End
+
+Quantity NbVis
+Kind : Integer ;
+Min  : 1 ;
+Max  : 100 ;
+Unit : u ;
+End
+
+(* ---------------------------------------------------- sans dimension *)
+Quantity Coef
+Kind : Real ;
+Min  : 0 ;
+Max  : +maxreal ;
+Unit : u ;
+End
+
+(* ---------------------------------------------------- geometrie *)
+Quantity Longueur
+Kind : Real ;
+Min  : 0 ;
+Max  : +maxreal ;
+Unit : mm ;
+End
+
+Quantity Aire
+Kind : Real ;
+Min  : 0 ;
+Max  : +maxreal ;
+Unit : mm2 ;
+End
+
+(* ---------------------------------------------------- efforts *)
+Quantity Effort
+Kind : Real ;
+Min  : 0 ;
+Max  : +maxreal ;
+Unit : N ;
+End
+
+Quantity Moment
+Kind : Real ;
+Min  : 0 ;
+Max  : +maxreal ;
+Unit : Nmm ;
+End
+
+Quantity ChargeLin
+Kind : Real ;
+Min  : 0 ;
+Max  : +maxreal ;
+Unit : Npmm ;
+End
+
+(* Pression, contrainte et module d'Young *)
+Quantity Pression
+Kind : Real ;
+Min  : 0 ;
+Max  : +maxreal ;
+Unit : MPa ;
+End
+
+(* ---------------------------------------------------- thermique *)
+Quantity TempC
+Kind : Real ;
+Min  : -273.15 ;
+Max  : +maxreal ;
+Unit : degC ;
+End
+
+(* ---------------------------------------------------- masse *)
+Quantity MasseVol
+Kind : Real ;
+Min  : 0 ;
+Max  : +maxreal ;
+Unit : kgpm3 ;
+End
+
+Quantity Masse
+Kind : Real ;
+Min  : 0 ;
+Max  : +maxreal ;
+Unit : kg ;
+End

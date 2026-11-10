@@ -1,0 +1,30 @@
+Package ProblemeEau ;
+Uses Universal, Grandeurs, Structure, Comportement, Exigences ;
+
+(* Cas eau DN65 : 18,8 MPa - 345 C - etancheite bulle.
+   S = structure, B = comportement applique a S, R = exigences sur S et B.
+   Borne sur la masse : avec DEPS Studio 1.0.0, Minimize s'arrete a la premiere
+   solution trouvee. Lancer Solve > First solution (strategie Discrete First,
+   Default values decoche) ; l'optimum attendu est 9,165 kg. *)
+Problem BrideEauDN65
+Constants
+Pser : Pression = 18.8 ;           (* MPa *)
+Tser : TempC = 345 ;               (* C *)
+Ft : Effort = 3025 ;               (* N *)
+Mf : Moment = 2975000 ;            (* N.mm  (2975 N.m) *)
+Mt : Moment = 850000 ;             (* N.mm  (850 N.m) *)
+Di : Longueur = 51.1 ;             (* mm : De - 2 e  (5.1) *)
+g0 : Longueur = 12.5 ;             (* mm : epaisseur du tube *)
+hcmin : Longueur = 17.871 ;        (* mm : racine(Di.g0/2) *)
+NivBulle : Indice = 1 ;            (* 1 = bulle, 2 = helium *)
+ReqEau : Indice = 1 ;              (* materiau de bride compatible eau *)
+Variables
+obj masse : Masse ;
+Elements
+S : StructureBride(Di, g0) ;
+B : ComportementBride(S, Pser, Tser, Ft, Mf, Mt) ;
+R : ExigencesBride(S, B, Pser, Tser, hcmin, NivBulle, ReqEau) ;
+Properties
+masse := S.m ;
+masse <= 9.165 ;
+End

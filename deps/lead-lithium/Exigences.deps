@@ -1,0 +1,41 @@
+Package Exigences ;
+Uses Universal, Grandeurs, Structure, Comportement ;
+
+(* CONDITIONS D'ACCEPTATION : toutes les contraintes du projet d'origine.
+   S reference la structure, B son comportement ; aucune copie n'est creee.
+   L'objectif de masse et sa borne restent dans ProblemeEau.deps. *)
+
+Model ExigencesBride(S, B, Pser, Tser, hcmin, NivReq, ReqTube)
+Constants
+Pser : Pression ;
+Tser : TempC ;
+hcmin : Longueur ;
+NivReq : Indice ;
+ReqTube : Indice ;
+Variables
+Elements
+S : StructureBride[Longueur, Longueur] ;
+B : ComportementBride[StructureBride[Longueur, Longueur], Pression, TempC, Effort, Moment, Moment] ;
+Properties
+S.J.niv = NivReq ;
+Tser < S.J.Tmax ;
+Pser <= S.J.PuT ;
+S.J.Dmin <= S.J.DA ;
+S.J.DA <= S.J.Dmax ;
+S.MV.Tmin <= Tser ;
+Tser <= S.MV.Tmax ;
+S.MB.admTube >= ReqTube ;
+S.MB.Tmin <= Tser ;
+Tser <= S.MB.Tmax ;
+B.sigeqv <= S.MV.SadmT ;
+B.sigbr <= S.MB.SadmT ;
+S.C >= S.J.DC + S.V.dt ;
+Pi*S.C/S.n >= S.V.sm ;
+S.h > S.J.F ;
+S.g1 >= S.g0 ;
+S.g1 <= 3*S.g0 ;
+S.g1 - S.g0 <= S.hc/3 ;
+S.hc >= hcmin ;
+S.C >= S.Di + 2*S.g1 + S.V.se ;
+End
+

@@ -1,0 +1,30 @@
+Package ProblemeHelium ;
+Uses Universal, Grandeurs, Structure, Comportement, Exigences ;
+
+(* Cas helium DN80 : 9,8 MPa - 525 C - etancheite helium.
+   S = structure, B = comportement applique a S, R = exigences sur S et B.
+   Borne sur la masse : avec DEPS Studio 1.0.0, Minimize s'arrete a la premiere
+   solution trouvee. Lancer Solve > First solution (strategie Discrete First,
+   Default values decoche) ; l'optimum attendu est 20,87 kg. *)
+Problem BrideHeliumDN80
+Constants
+Pser : Pression = 9.8 ;            (* MPa *)
+Tser : TempC = 525 ;               (* C *)
+Ft : Effort = 1930 ;               (* N *)
+Mf : Moment = 7175000 ;            (* N.mm  (7175 N.m) *)
+Mt : Moment = 2685000 ;            (* N.mm  (2685 N.m) *)
+Di : Longueur = 71.3 ;             (* mm : De - 2 e  (5.1) *)
+g0 : Longueur = 8.8 ;              (* mm : epaisseur du tube *)
+hcmin : Longueur = 17.712 ;        (* mm : racine(Di.g0/2) *)
+NivReq : Indice = 2 ;              (* 1 = bulle, 2 = helium *)
+ReqTube : Indice = 1 ;             (* materiau de bride compatible tube 316L *)
+Variables
+obj masse : Masse ;
+Elements
+S : StructureBride(Di, g0) ;
+B : ComportementBride(S, Pser, Tser, Ft, Mf, Mt) ;
+R : ExigencesBride(S, B, Pser, Tser, hcmin, NivReq, ReqTube) ;
+Properties
+masse := S.m ;
+masse <= 21 ;
+End

@@ -49,7 +49,8 @@ Water case: bolt utilization 98.64 %, flange bending utilization 100 %. For each
 | `report/` | Full report (EN + FR, PDF) |
 | `catalogs/` | HELICOFLEX HN200 seal catalog in SI units |
 | `figures/` | Report figures |
-| `deps/` | DEPS Studio models (add before publishing) |
+| `deps/` | DEPS Studio models: water, lead-lithium, helium (with exported solutions) |
+| `presentation/` | Defense slides |
 
 ## Team
 

@@ -25,7 +25,7 @@ Cas eau : vis à 98,64 %, flexion de bride à 100 %. Un recalcul indépendant co
 
 ## Contenu
 
-`report/` (rapport FR + EN), `catalogs/` (catalogue HN200 en SI), `figures/`, `deps/` (modèles DEPS à ajouter).
+`report/` (rapport FR + EN), `catalogs/` (catalogue HN200 en SI), `figures/`, `deps/` (modèles DEPS eau, lithium-plomb, hélium avec solutions exportées), `presentation/` (soutenance).
 
 ## Équipe
 

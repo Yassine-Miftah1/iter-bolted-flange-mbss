@@ -1,0 +1,43 @@
+Package Structure ;
+Uses Universal, Grandeurs, Composants ;
+
+(* S decrit UNE structure : 2 brides, 1 joint et n boulons identiques.
+   Les expressions de geometrie et de masse y sont regroupees.
+   Il n'existe aucune deuxieme selection de composants dans le comportement. *)
+
+Model StructureBride(Di, g0)
+Constants
+Di : Longueur ;
+g0 : Longueur ;
+epau : Longueur = 2.0 ;
+kMasse : Coef = 0.000000001 ;
+Variables
+n : NbVis in {4, 8, 12, 16, 20, 24} ;
+C : Longueur in [40, 400] ;
+h : Longueur in [1, 150] ;
+g1 : Longueur in [1, 100] ;
+hc : Longueur in [1, 100] ;
+expr Df : Longueur ;
+expr Rc : Longueur ;
+expr Lv : Longueur ;
+expr gm : Longueur ;
+expr mbr : Masse ;
+expr mcol : Masse ;
+expr mv : Masse ;
+expr m : Masse ;
+Elements
+J : JointHelicoflex(Di, epau) ;
+V : Boulon() ;
+MV : MateriauVis() ;
+MB : MateriauBride() ;
+Properties
+Df := C + 2*V.bm ;
+Rc := (J.DC + Df)/4 ;
+Lv := 2*h + 1.5*V.d ;
+gm := (g0 + g1)/2 ;
+mbr := kMasse*2*MB.rho*h*(Pi/4*((Df^2) - (Di^2)) - n*Pi*(V.dt^2)/4) ;
+mcol := kMasse*2*MB.rho*Pi*hc*(Di + gm)*gm ;
+mv := kMasse*n*MV.rho*Pi*(V.d^2)/4*Lv ;
+m := mbr + mcol + mv ;
+End
+

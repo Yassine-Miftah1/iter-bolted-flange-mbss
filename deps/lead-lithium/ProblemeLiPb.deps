@@ -1,0 +1,30 @@
+Package ProblemeLiPb ;
+Uses Universal, Grandeurs, Structure, Comportement, Exigences ;
+
+(* Cas lithium-plomb DN25 : 0,9 MPa - 340 C - etancheite bulle - tube Eurofer.
+   S = structure, B = comportement applique a S, R = exigences sur S et B.
+   Borne sur la masse : avec DEPS Studio 1.0.0, Minimize s'arrete a la premiere
+   solution trouvee. Lancer Solve > First solution (strategie Discrete First,
+   Default values decoche) ; l'optimum attendu est 0,751 kg. *)
+Problem BrideLiPbDN25
+Constants
+Pser : Pression = 0.9 ;            (* MPa *)
+Tser : TempC = 340 ;               (* C *)
+Ft : Effort = 1000 ;               (* N *)
+Mf : Moment = 325000 ;             (* N.mm  (325 N.m) *)
+Mt : Moment = 100000 ;             (* N.mm  (100 N.m) *)
+Di : Longueur = 23.7 ;             (* mm : De - 2 e  (5.1) *)
+g0 : Longueur = 5 ;                (* mm : epaisseur du tube *)
+hcmin : Longueur = 7.697 ;         (* mm : racine(Di.g0/2) *)
+NivReq : Indice = 1 ;              (* 1 = bulle, 2 = helium *)
+ReqTube : Indice = 1 ;             (* materiau de bride compatible tube Eurofer / LiPb *)
+Variables
+obj masse : Masse ;
+Elements
+S : StructureBride(Di, g0) ;
+B : ComportementBride(S, Pser, Tser, Ft, Mf, Mt) ;
+R : ExigencesBride(S, B, Pser, Tser, hcmin, NivReq, ReqTube) ;
+Properties
+masse := S.m ;
+masse <= 0.752 ;
+End

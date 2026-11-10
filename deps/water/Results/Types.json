@@ -1,0 +1,105 @@
+{
+"masse" : "OV",
+ "S" : 
+     {
+     "n" : "OV",
+     "C" : "OV",
+     "h" : "OV",
+     "g1" : "OV",
+     "hc" : "OV",
+     "Df" : "OV",
+     "Rc" : "OV",
+     "Lv" : "OV",
+     "gm" : "OV",
+     "mbr" : "OV",
+     "mcol" : "OV",
+     "mv" : "OV",
+     "m" : "OV",
+     "J" : 
+         {
+         "ref" : "OV",
+         "niv" : "OV",
+         "jaq" : "OV",
+         "CS" : "OV",
+         "e2" : "OV",
+         "ec" : "OV",
+         "Y2" : "OV",
+         "Y1" : "OV",
+         "PuAmb" : "OV",
+         "PuT" : "OV",
+         "Tmax" : "OV",
+         "Dmin" : "OV",
+         "Dmax" : "OV",
+         "XlowP" : "OV",
+         "XhighP" : "OV",
+         "F" : "OV",
+         "G" : "OV",
+         "X" : "OV",
+         "DG" : "OV",
+         "DA" : "OV",
+         "DC" : "OV"
+         },
+     "V" : 
+         {
+         "ref" : "OV",
+         "d" : "OV",
+         "p" : "OV",
+         "d2" : "OV",
+         "d3" : "OV",
+         "As" : "OV",
+         "ds" : "OV",
+         "dt" : "OV",
+         "s" : "OV",
+         "se" : "OV",
+         "bm" : "OV",
+         "sm" : "OV"
+         },
+      "MV" : 
+           {
+           "ref" : "OV",
+           "rho" : "OV",
+           "E20" : "OV",
+           "ET" : "OV",
+           "Rp02T" : "OV",
+           "SadmT" : "OV",
+           "Tmin" : "OV",
+           "Tmax" : "OV"
+           },
+      "MB" : 
+           {
+           "ref" : "OV",
+           "rho" : "OV",
+           "E20" : "OV",
+           "ET" : "OV",
+           "Rp02T" : "OV",
+           "SadmT" : "OV",
+           "Tmin" : "OV",
+           "Tmax" : "OV",
+           "admEau" : "OV"
+           }
+     },
+ "B" : 
+     {
+     "Fext" : "OV",
+     "Ftor" : "OV",
+     "Fs" : "OV",
+     "Fss" : "OV",
+     "FB" : "OV",
+     "F0" : "OV",
+     "Cs" : "OV",
+     "C1" : "OV",
+     "sigv" : "OV",
+     "tauv" : "OV",
+     "sigeqv" : "OV",
+     "Mbr" : "OV",
+     "sigbr" : "OV",
+     "J" : 
+         {
+         "Fmp" : "OV",
+         "Fj" : "OV",
+         "Fp" : "OV",
+         "Ym" : "OV",
+         "Fm" : "OV"
+         }
+     }
+}

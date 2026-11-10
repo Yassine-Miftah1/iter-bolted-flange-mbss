@@ -1,0 +1,102 @@
+Package Composants ;
+Uses Universal, Grandeurs, Donnees ;
+
+(* STRUCTURE DES COMPOSANTS : choix de catalogue et geometrie uniquement.
+   Les calculs d'efforts sont dans Comportement.deps.
+   Les conditions d'acceptation sont dans Exigences.deps.
+   X est une variable d'interface geometrique : sa valeur est determinee
+   en fonction de la pression par ComportementJoint, sur le MEME joint. *)
+
+Model JointHelicoflex(Di, epau)
+Constants
+Di : Longueur ;
+epau : Longueur ;
+Variables
+ref : Indice ;
+niv : Indice ;
+jaq : Indice ;
+CS : Longueur ;
+e2 : Longueur ;
+ec : Longueur ;
+Y2 : ChargeLin ;
+Y1 : ChargeLin ;
+PuAmb : Pression ;
+PuT : Pression ;
+Tmax : TempC ;
+Dmin : Longueur ;
+Dmax : Longueur ;
+XlowP : Longueur ;
+XhighP : Longueur ;
+F : Longueur ;
+G : Longueur ;
+X : Longueur in [0, 2] ;
+expr DG : Longueur ;
+expr DA : Longueur ;
+expr DC : Longueur ;
+Elements
+Properties
+Catalog([ref, niv, jaq, CS, e2, ec, Y2, Y1, PuAmb, PuT, Tmax, Dmin, Dmax, XlowP, XhighP, F, G], CatJoints) ;
+DG := Di + 2*epau + CS ;
+DA := DG + CS ;
+DC := DA + X ;
+End
+
+Model Boulon()
+Constants
+jeuBord : Longueur = 3.0 ;
+jeuCle : Longueur = 6.0 ;
+kAngle : Coef = 1.154701 ;
+Variables
+ref : Indice ;
+d : Longueur ;
+p : Longueur ;
+d2 : Longueur ;
+d3 : Longueur ;
+As : Aire ;
+ds : Longueur ;
+dt : Longueur ;
+s : Longueur ;
+expr se : Longueur ;
+expr bm : Longueur ;
+expr sm : Longueur ;
+Elements
+Properties
+Catalog([ref, d, p, d2, d3, As, ds, dt, s], CatVis) ;
+se := kAngle*s ;
+bm := se/2 + jeuBord ;
+sm := se + jeuCle ;
+End
+
+Model MateriauVis()
+Constants
+Variables
+ref : Indice ;
+rho : MasseVol ;
+E20 : Pression ;
+ET : Pression ;
+Rp02T : Pression ;
+SadmT : Pression ;
+Tmin : TempC ;
+Tmax : TempC ;
+Elements
+Properties
+Catalog([ref, rho, E20, ET, Rp02T, SadmT, Tmin, Tmax], CatMatVis) ;
+End
+
+Model MateriauBride()
+Constants
+Variables
+ref : Indice ;
+rho : MasseVol ;
+E20 : Pression ;
+ET : Pression ;
+Rp02T : Pression ;
+SadmT : Pression ;
+Tmin : TempC ;
+Tmax : TempC ;
+admTube : Indice ;
+Elements
+Properties
+Catalog([ref, rho, E20, ET, Rp02T, SadmT, Tmin, Tmax, admTube], CatMatBride) ;
+End
+
