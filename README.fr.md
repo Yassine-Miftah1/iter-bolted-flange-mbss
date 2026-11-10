@@ -29,4 +29,4 @@ Cas eau : vis à 98,64 %, flexion de bride à 100 %. Un recalcul indépendant co
 
 ## Équipe
 
-Hossam Benkhadra, Adrian Ujkaj, Yassine Miftah.
+Yassine Miftah, Adrian Ujkaj, et Hossam Benkhadra.
