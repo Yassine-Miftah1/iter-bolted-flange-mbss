@@ -54,7 +54,7 @@ Water case: bolt utilization 98.64 %, flange bending utilization 100 %. For each
 
 ## Team
 
-Hossam Benkhadra, Adrian Ujkaj, Yassine Miftah. Contribution details: _to be completed by the team_.
+Yassine Miftah, Adrian Ujkaj, Hossam Benkhadra. 
 
 ## References and licensing
 
